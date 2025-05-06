@@ -13,6 +13,7 @@ Cypress.Commands.add('register_e2e',() => {
 
         }).then((response)=>{
             expect(response.status).to.eq(200)
+            expect(response.body.service_message).to.eq('Phone check completed')
 
 //OTP check
 
@@ -21,12 +22,13 @@ Cypress.Commands.add('register_e2e',() => {
             url : DOMAIN + "otp-check",
             body : {
 
-                "OTP": "000000", //mock otp
+                "OTP": "000000", //mocked otp
                 "mobile_number": "0000000000",
             },
 
         }).then((response)=>{
             expect(response.status).to.eq(200)
+            expect(response.body.service_message).to.eq('OTP check completed')
 
 //identity check
 
@@ -42,6 +44,7 @@ Cypress.Commands.add('register_e2e',() => {
         }
             }).then((response)=>{
             expect(response.status).to.eq(200)
+            expect(response.body.service_message).to.eq('Identity check completed')
 
 //bank check
 
@@ -57,6 +60,7 @@ Cypress.Commands.add('register_e2e',() => {
 
             }).then((response)=>{
             expect(response.status).to.eq(200)
+            expect(response.body.service_message).to.eq('Register completed')
             })
         })
     })
